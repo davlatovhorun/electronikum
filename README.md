@@ -6,18 +6,17 @@
   <meta name="google-site-verification" content="WlCTcTOwwWr-x6Iy6HqiBJ3XeW-ncZumkvalxS6WhQo" />
   <title>Электроникум — Магазин современной электроники</title>
   <meta name="description" content="Электроникум — ноутбуки, смартфоны, наушники, телевизоры и аксессуары. Быстрая консультация и честные цены." />
-  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
+  
   <!-- JSON-LD (SEO) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ElectronicsStore",
     "name": "Электроникум",
-    "telephone": "+992919222766",
+    "telephone": ["+992919222766", "+992555551018"],
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "TJ"
@@ -29,55 +28,76 @@
 
   <style>
     :root{
-      --bg:#f8fafc; --card:#ffffff; --text:#0f172a; --muted:#475569; --brand:#2563eb; --ring:#93c5fd; --shadow:0 10px 25px rgba(2,6,23,.08);
+      --bg:#f8fafc; /* slate-50 */
+      --card:#ffffff;
+      --text:#0f172a; /* slate-900 */
+      --muted:#475569; /* slate-600 */
+      --brand:#2563eb; /* blue-600 */
+      --ring:#93c5fd; /* blue-300 */
+      --shadow:0 10px 25px rgba(2,6,23,.08);
     }
-    *{box-sizing:border-box;}
-    html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,"Noto Sans",sans-serif;color:var(--text);background:var(--bg);}
-    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.8);backdrop-filter:blur(8px);border-bottom:1px solid #e2e8f0;}
-    .container{max-width:1200px;margin:0 auto;padding:16px;}
-    .topbar{display:flex;align-items:center;gap:16px;justify-content:space-between;}
-    .brand{display:flex;align-items:center;gap:12px;}
-    .brand h1{font-size:20px;margin:0;}
-    .brand small{color:var(--muted);}
-    nav a{display:inline-block;padding:8px 12px;border-radius:999px;text-decoration:none;color:var(--text);font-weight:600;}
-    nav a:hover, nav a:focus{outline:none;background:#e2e8f0;}
-    .controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;}
-    .input, select{width:100%;max-width:280px;padding:10px 12px;border:1px solid #e2e8f0;border-radius:12px;background:#fff;}
-    .btn{appearance:none;border:1px solid #e2e8f0;background:var(--card);padding:10px 14px;border-radius:12px;font-weight:600;cursor:pointer;}
-    .btn:hover{box-shadow:var(--shadow);}
-    .btn.primary{background:var(--brand);color:white;border-color:var(--brand);}
-    .badge{display:inline-block;background:#eef2ff;color:#3730a3;border:1px solid #c7d2fe;padding:2px 8px;border-radius:999px;font-size:12px;}
-    .products{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:18px;}
-    .product{background:var(--card);border:1px solid #e2e8f0;border-radius:18px;box-shadow:var(--shadow);padding:12px;cursor:pointer;display:flex;flex-direction:column;transition:transform .15s ease;}
-    .product:focus,.product:hover{transform:translateY(-2px);outline:2px solid var(--ring);}
-    .product img{width:100%;height:160px;object-fit:cover;border-radius:12px;background:#f1f5f9;}
-    .product h3{margin:10px 0 6px 0;font-size:16px;}
-    .product p{font-size:14px;color:#555;margin:0;}
-    .price-row{display:flex;align-items:center;justify-content:space-between;margin-top:10px;}
-    .price{font-weight:700;}
-    .modal{position:fixed;inset:0;background:rgba(2,6,23,.5);display:none;align-items:center;justify-content:center;padding:16px;}
-    .modal[aria-hidden="false"]{display:flex;}
-    .modal-content{background:var(--card);border-radius:20px;max-width:560px;width:100%;padding:20px;border:1px solid #e2e8f0;box-shadow:var(--shadow);}
-    .modal-header{display:flex;justify-content:space-between;align-items:center;gap:8px;}
-    .close{border:none;background:transparent;font-size:28px;line-height:1;cursor:pointer;}
-    .modal-body{display:grid;grid-template-columns:160px 1fr;gap:16px;margin-top:10px;}
-    .modal-body img{width:160px;height:160px;object-fit:cover;border-radius:12px;}
-    footer{margin-top:40px;border-top:1px solid #e2e8f0;background:#fff;}
-    footer .container{display:grid;gap:6px;}
-    .muted{color:var(--muted);}
-    .dark{--bg:#0b1220;--card:#0f172a;--text:#e5e7eb;--muted:#94a3b8;--brand:#60a5fa;--ring:#1d4ed8;border-color:#1f2937;}
-    .dark header{background:rgba(15,23,42,.6);border-bottom-color:#1f2937;}
-    .dark .product{border-color:#1f2937;}
-    .dark .input,.dark select{background:#0f172a;border-color:#1f2937;color:var(--text);}
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,"Noto Sans",sans-serif;color:var(--text);background:var(--bg)}
+
+    /* Header / Nav */
+    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.8);backdrop-filter:blur(8px);border-bottom:1px solid #e2e8f0}
+    .container{max-width:1200px;margin:0 auto;padding:16px}
+    .topbar{display:flex;align-items:center;gap:16px;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand h1{font-size:20px;margin:0}
+    .brand small{color:var(--muted)}
+    nav a{display:inline-block;padding:8px 12px;border-radius:999px;text-decoration:none;color:var(--text);font-weight:600}
+    nav a:hover, nav a:focus{outline:none;background:#e2e8f0}
+
+    .controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .input, select{width:100%;max-width:280px;padding:10px 12px;border:1px solid #e2e8f0;border-radius:12px;background:#fff}
+    .btn{appearance:none;border:1px solid #e2e8f0;background:var(--card);padding:10px 14px;border-radius:12px;font-weight:600;cursor:pointer}
+    .btn:hover{box-shadow:var(--shadow)}
+    .btn.primary{background:var(--brand);color:white;border-color:var(--brand)}
+    .badge{display:inline-block;background:#eef2ff;color:#3730a3;border:1px solid #c7d2fe;padding:2px 8px;border-radius:999px;font-size:12px}
+
+    /* Grid */
+    .products{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:18px}
+    .product{background:var(--card);border:1px solid #e2e8f0;border-radius:18px;box-shadow:var(--shadow);padding:12px;cursor:pointer;display:flex;flex-direction:column;transition:transform .15s ease}
+    .product:focus,.product:hover{transform:translateY(-2px);outline:2px solid var(--ring)}
+    .product img{width:100%;height:160px;object-fit:cover;border-radius:12px;background:#f1f5f9}
+    .product h3{margin:10px 0 6px 0;font-size:16px}
+    .product p{font-size:14px;color:#555;margin:0}
+    .price-row{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+    .price{font-weight:700}
+
+    /* Modal */
+    .modal{position:fixed;inset:0;background:rgba(2,6,23,.5);display:none;align-items:center;justify-content:center;padding:16px}
+    .modal[aria-hidden="false"]{display:flex}
+    .modal-content{background:var(--card);border-radius:20px;max-width:560px;width:100%;padding:20px;border:1px solid #e2e8f0;box-shadow:var(--shadow)}
+    .modal-header{display:flex;justify-content:space-between;align-items:center;gap:8px}
+    .close{border:none;background:transparent;font-size:28px;line-height:1;cursor:pointer}
+    .modal-body{display:grid;grid-template-columns:160px 1fr;gap:16px;margin-top:10px}
+    .modal-body img{width:160px;height:160px;object-fit:cover;border-radius:12px}
+
+    /* Footer */
+    footer{margin-top:40px;border-top:1px solid #e2e8f0;background:#fff}
+    footer .container{display:grid;gap:6px}
+    .muted{color:var(--muted)}
+
+    /* Dark mode */
+    .dark{--bg:#0b1220;--card:#0f172a;--text:#e5e7eb;--muted:#94a3b8;--brand:#60a5fa;--ring:#1d4ed8;border-color:#1f2937}
+    .dark header{background:rgba(15,23,42,.6);border-bottom-color:#1f2937}
+    .dark .product{border-color:#1f2937}
+    .dark .input,.dark select{background:#0f172a;border-color:#1f2937;color:var(--text)}
   </style>
 </head>
+<meta name="google-site-verification" content="GQZhzcWIcx7_qHv8ofn1jaM9se7YdfkT1ooYta8e6dE" />
 <body>
   <header>
     <div class="container">
       <div class="topbar">
         <div class="brand" aria-label="Электроникум">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          <div><h1>Электроникум</h1><small>Магазин современной электроники</small></div>
+          <div>
+            <h1>Электроникум</h1>
+            <small>Магазин современной электроники</small>
+          </div>
         </div>
         <nav aria-label="Основная навигация">
           <a href="#products">Товары</a>
@@ -114,11 +134,15 @@
   </header>
 
   <main class="container" id="products">
-    <section class="products" id="grid" aria-live="polite"></section>
+    <section class="products" id="grid" aria-live="polite">
+      <!-- Товары (данные берём из массива products внизу) будут сгенерированы JS -->
+    </section>
+
     <section id="about" style="margin-top:36px">
       <h2>О нас</h2>
       <p class="muted">Мы помогаем подобрать технику для учебы, работы и отдыха. Консультируем, даём гарантию и поддерживаем после покупки.</p>
     </section>
+
     <section id="contacts" style="margin-top:24px">
       <h2>Контакты</h2>
       <p>Телефон: <a href="tel:+992919222766">+992 919 222 766</a> | <a href="tel:+992555551018">+992 555 551 018</a></p>
@@ -130,6 +154,7 @@
     </section>
   </main>
 
+  <!-- Модальное окно -->
   <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-title">
     <div class="modal-content">
       <div class="modal-header">
@@ -157,10 +182,23 @@
   </footer>
 
   <script>
+    // ДАННЫЕ ТОВАРОВ (из вашего исходника + категории + цены в копейках)
     const products = [
       {title:'MacBook', cat:'laptop', priceRUB:75000_00, desc:'Мощный ноутбук с Retina-дисплеем и процессором Apple M1.', img:'https://www.iphones.ru/wp-content/uploads/2023/10/IMG_1263.jpeg'},
       {title:'Планшет Samsung', cat:'tablet', priceRUB:30000_00, desc:'Универсальный планшет с ярким экраном и поддержкой S Pen.', img:'https://www.cifrus.ru/photos/little/samsung/samsung-galaxy-tab-s10-fe-plus-x628-12-256gb-5g-grey-global-1.jpg'},
-      {title:'Телевизор LG', cat:'tv', priceRUB:60000_00, desc:'Смарт-ТВ с 4K разрешением и поддержкой HDR10.', img:'https://s2-techtudo.glbimg.com/ycKlM1DtsKLW8_Yqucso5ogw72o=/0x0:750x480/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2021/B/a/wpDXATS5ipnuIcyUjO9Q/2012-10-18-large01.jpeg'}
+      {title:'Телевизор LG', cat:'tv', priceRUB:60000_00, desc:'Смарт-ТВ с 4K разрешением и поддержкой HDR10.', img:'https://s2-techtudo.glbimg.com/ycKlM1DtsKLW8_Yqucso5ogw72o=/0x0:750x480/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2021/B/a/wpDXATS5ipnuIcyUjO9Q/2012-10-18-large01.jpeg'},
+      {title:'Apple AirPods Max', cat:'audio', priceRUB:15000_00, desc:'Премиальные наушники с шумоподавлением и пространственным звуком.', img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxjnnEhOCO_bgt84_aEmQUTJdKe1SaBexXjA&s'},
+      {title:'Колонка JBL', cat:'audio', priceRUB:12000_00, desc:'Портативная колонка с мощным басом и защитой от влаги.', img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0lDglNYZnB8-jFpBPlITd42JWSMijz6oEGQ&s'},
+      {title:'Смартфон iPhone', cat:'phone', priceRUB:95000_00, desc:'Флагман Apple с отличной камерой и дисплеем Super Retina XDR.', img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRH66tVh_H7x4xCPcimhsTd50fjViF4ZpenRg&s'},
+      {title:'Игровая мышь', cat:'accessory', priceRUB:2000_00, desc:'Беспроводная игровая мышь с RGB‑подсветкой.', img:'https://images.prom.ua/5237261349_w640_h320_besprovodnaya-igrovaya-myshka.jpg'},
+      {title:'Apple Watch', cat:'accessory', priceRUB:35000_00, desc:'Часы с функцией ЭКГ, пульсометром и отслеживанием активности.', img:'https://help.apple.com/assets/67609172711801C2360E7AF2/6760917D62369CFAF70E5F33/en_US/42d0c7a0eb8ae808b85c49e441ad08a0.png'},
+      {title:'Видеокарта RTX 4090', cat:'pc', priceRUB:150000_00, desc:'Флагманская видеокарта для игр в 4K и работы с ИИ.', img:'https://static.gigabyte.com/StaticFile/Image/Global/cf7418c2c3d39d8d0aa37dd85f940399/Product/32546/png/1000'},
+      {title:'Кофеварка Xiaomi', cat:'home', priceRUB:50000_00, desc:'Капсульная кофеварка с автоматической очисткой.', img:'https://texnohome.az/image/catalog/29.12.2024/xiaomi-mi-capsule-coffee-machine-1-squaremedium-ezgifcom-webp-to-jpg-converter.jpg'},
+      {title:'PlayStation 5', cat:'console', priceRUB:15000_00, desc:'Консоль нового поколения с поддержкой 4K и быстрым SSD.', img:'https://st.depositphotos.com/10617446/56390/i/450/depositphotos_563907420-stock-photo-playstation-console-isolated-white-background.jpg'},
+      {title:'Фен Dyson', cat:'home', priceRUB:9000_00, desc:'Антистатический эффект, длина рукоятки 245 мм. Профессиональная укладка.', img:'https://cdn.btw.shopping/article/%D1%84%D0%B5%D0%BD_%D0%B4-WRgX0Ae9Sgqy.webp'},
+      {title:'Samsung Galaxy S25 Ultra', cat:'phone', priceRUB:132400_00, desc:'Мощный смартфон с ИИ‑функциями и отличной камерой.', img:'https://dicentre.ru/wa-data/public/shop/img/tsveta.jpg'},
+      {title:'iPad Pro 11', cat:'tablet', priceRUB:120400_00, desc:'Лёгкий и универсальный планшет для повседневных задач.', img:'https://istore.ke/wp-content/uploads/2023/09/ipad_pro_wi-fi_11_in_4th_generation_silver_pdp_image_position-1b__wwen-410x410.jpg'},
+      {title:'iMac 24" (M3)', cat:'pc', priceRUB:145000_00, desc:'Моноблок с дисплеем 24" и процессором Apple M3.', img:'https://cdn.shoplightspeed.com/shops/662820/files/59786730/650x750x2/apple-imac-24-apple-m3-8-cpu-10gpu-8-gb-512-gb-ssd.jpg'}
     ];
 
     const grid = document.getElementById('grid');
@@ -170,8 +208,9 @@
     const currencyToggle = document.getElementById('currency-toggle');
     const themeToggle = document.getElementById('theme-toggle');
 
+    // Валюта: ₽ <-> SM (сомони). Курс условный, отредактируйте при желании
     let currency = 'RUB';
-    const RATE_RUB_TO_TJS = 0.13;
+    const RATE_RUB_TO_TJS = 0.13; // ~примерный курс, можно поменять
 
     const formatPrice = (rubCents) => {
       if(currency==='RUB'){
@@ -182,13 +221,10 @@
       }
     }
 
-    function mapCat(c){
-      return {laptop:'Ноутбуки', tablet:'Планшеты', tv:'Телевизоры', audio:'Аудио', phone:'Смартфоны', accessory:'Аксессуары', console:'Приставки', home:'Для дома', pc:'ПК'}[c] || 'Другое';
-    }
-
     function productCard(p){
       const el = document.createElement('article');
-      el.className = 'product'; el.tabIndex = 0;
+      el.className = 'product';
+      el.tabIndex = 0;
       el.setAttribute('data-title', p.title.toLowerCase());
       el.setAttribute('data-cat', p.cat);
       el.setAttribute('data-price', p.priceRUB);
@@ -201,9 +237,16 @@
           <span class="badge">${mapCat(p.cat)}</span>
         </div>
       `;
+
       el.addEventListener('click', ()=> showPrice(p));
       el.addEventListener('keypress', (e)=> { if(e.key==='Enter') showPrice(p); });
       return el;
+    }
+
+    function mapCat(c){
+      return ({
+        laptop:'Ноутбуки', tablet:'Планшеты', tv:'Телевизоры', audio:'Аудио', phone:'Смартфоны', accessory:'Аксессуары', console:'Приставки', home:'Для дома', pc:'ПК'
+      })[c] || 'Другое';
     }
 
     function render(list){
@@ -221,6 +264,7 @@
       const q = searchInput.value.trim().toLowerCase();
       const cat = categorySelect.value;
       let list = products.filter(p => (!q || p.title.toLowerCase().includes(q)) && (!cat || p.cat===cat));
+      // сортировка
       switch(sortSelect.value){
         case 'price-asc': list.sort((a,b)=>a.priceRUB-b.priceRUB); break;
         case 'price-desc': list.sort((a,b)=>b.priceRUB-a.priceRUB); break;
@@ -230,25 +274,28 @@
       render(list);
     }
 
+    // Инициализация
     render(products);
-    searchInput.addEventListener('input', applyFilters);
-    categorySelect.addEventListener('change', applyFilters);
-    sortSelect.addEventListener('change', applyFilters);
+    [searchInput, categorySelect, sortSelect].forEach(el=> el.addEventListener('input', applyFilters));
 
+    // Переключение валюты
     currencyToggle.addEventListener('click', ()=>{
       currency = currency==='RUB' ? 'TJS' : 'RUB';
       currencyToggle.textContent = currency==='RUB' ? '₽' : 'SM';
       applyFilters();
     });
 
+    // Темная тема (запоминание в localStorage)
     const root = document.documentElement;
-    if(localStorage.getItem('theme')==='dark'){ root.classList.add('dark'); themeToggle.setAttribute('aria-pressed','true'); }
+    const savedTheme = localStorage.getItem('theme');
+    if(savedTheme==='dark'){ root.classList.add('dark'); themeToggle.setAttribute('aria-pressed','true'); }
     themeToggle.addEventListener('click',()=>{
       const isDark = root.classList.toggle('dark');
       themeToggle.setAttribute('aria-pressed', String(isDark));
       localStorage.setItem('theme', isDark?'dark':'light');
     });
 
+    // Модалка
     const modal = document.getElementById('modal');
     const mTitle = document.getElementById('modal-title');
     const mDesc  = document.getElementById('modal-desc');
@@ -260,14 +307,21 @@
       mDesc.textContent = p.desc;
       mPrice.textContent = formatPrice(p.priceRUB);
       mImg.src = p.img; mImg.alt = p.title;
-      modal.setAttribute('aria-hidden','false'); modal.style.display='flex';
+      modal.setAttribute('aria-hidden','false');
+      modal.style.display='flex';
+      // блокируем прокрутку страницы под модалкой
       document.body.style.overflow='hidden';
     }
 
     function closeModal(){
-      modal.setAttribute('aria-hidden','true'); modal.style.display='none';
+      modal.setAttribute('aria-hidden','true');
+      modal.style.display='none';
       document.body.style.overflow='auto';
     }
 
-    window.closeModal = closeModal;
-    modal.addEventListener
+    window.closeModal = closeModal; // чтобы работала кнопка X
+    modal.addEventListener('click',(e)=>{ if(e.target===modal) closeModal(); });
+    window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModal(); });
+  </script>
+</body>
+</html>
