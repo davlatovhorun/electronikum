@@ -1,327 +1,336 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head> 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="google-site-verification" content="WlCTcTOwwWr-x6Iy6HqiBJ3XeW-ncZumkvalxS6WhQo" />
-  <title>Электроникум — Магазин современной электроники</title>
-  <meta name="description" content="Электроникум — ноутбуки, смартфоны, наушники, телевизоры и аксессуары. Быстрая консультация и честные цены." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  
-  <!-- JSON-LD (SEO) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ElectronicsStore",
-    "name": "Электроникум",
-    "telephone": ["+992919222766", "+992555551018"],
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "TJ"
-    },
-    "url": "https://example.com/",
-    "image": "https://www.iphones.ru/wp-content/uploads/2023/10/IMG_1263.jpeg"
-  }
-  </script>
-
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Чудеса — Магазин Электроники</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#f8fafc; /* slate-50 */
-      --card:#ffffff;
-      --text:#0f172a; /* slate-900 */
-      --muted:#475569; /* slate-600 */
-      --brand:#2563eb; /* blue-600 */
-      --ring:#93c5fd; /* blue-300 */
-      --shadow:0 10px 25px rgba(2,6,23,.08);
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      background: #f4f4f9;
+      color: #333;
     }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,"Noto Sans",sans-serif;color:var(--text);background:var(--bg)}
-
-    /* Header / Nav */
-    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.8);backdrop-filter:blur(8px);border-bottom:1px solid #e2e8f0}
-    .container{max-width:1200px;margin:0 auto;padding:16px}
-    .topbar{display:flex;align-items:center;gap:16px;justify-content:space-between}
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand h1{font-size:20px;margin:0}
-    .brand small{color:var(--muted)}
-    nav a{display:inline-block;padding:8px 12px;border-radius:999px;text-decoration:none;color:var(--text);font-weight:600}
-    nav a:hover, nav a:focus{outline:none;background:#e2e8f0}
-
-    .controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-    .input, select{width:100%;max-width:280px;padding:10px 12px;border:1px solid #e2e8f0;border-radius:12px;background:#fff}
-    .btn{appearance:none;border:1px solid #e2e8f0;background:var(--card);padding:10px 14px;border-radius:12px;font-weight:600;cursor:pointer}
-    .btn:hover{box-shadow:var(--shadow)}
-    .btn.primary{background:var(--brand);color:white;border-color:var(--brand)}
-    .badge{display:inline-block;background:#eef2ff;color:#3730a3;border:1px solid #c7d2fe;padding:2px 8px;border-radius:999px;font-size:12px}
-
-    /* Grid */
-    .products{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:18px}
-    .product{background:var(--card);border:1px solid #e2e8f0;border-radius:18px;box-shadow:var(--shadow);padding:12px;cursor:pointer;display:flex;flex-direction:column;transition:transform .15s ease}
-    .product:focus,.product:hover{transform:translateY(-2px);outline:2px solid var(--ring)}
-    .product img{width:100%;height:160px;object-fit:cover;border-radius:12px;background:#f1f5f9}
-    .product h3{margin:10px 0 6px 0;font-size:16px}
-    .product p{font-size:14px;color:#555;margin:0}
-    .price-row{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
-    .price{font-weight:700}
-
-    /* Modal */
-    .modal{position:fixed;inset:0;background:rgba(2,6,23,.5);display:none;align-items:center;justify-content:center;padding:16px}
-    .modal[aria-hidden="false"]{display:flex}
-    .modal-content{background:var(--card);border-radius:20px;max-width:560px;width:100%;padding:20px;border:1px solid #e2e8f0;box-shadow:var(--shadow)}
-    .modal-header{display:flex;justify-content:space-between;align-items:center;gap:8px}
-    .close{border:none;background:transparent;font-size:28px;line-height:1;cursor:pointer}
-    .modal-body{display:grid;grid-template-columns:160px 1fr;gap:16px;margin-top:10px}
-    .modal-body img{width:160px;height:160px;object-fit:cover;border-radius:12px}
-
-    /* Footer */
-    footer{margin-top:40px;border-top:1px solid #e2e8f0;background:#fff}
-    footer .container{display:grid;gap:6px}
-    .muted{color:var(--muted)}
-
-    /* Dark mode */
-    .dark{--bg:#0b1220;--card:#0f172a;--text:#e5e7eb;--muted:#94a3b8;--brand:#60a5fa;--ring:#1d4ed8;border-color:#1f2937}
-    .dark header{background:rgba(15,23,42,.6);border-bottom-color:#1f2937}
-    .dark .product{border-color:#1f2937}
-    .dark .input,.dark select{background:#0f172a;border-color:#1f2937;color:var(--text)}
+    header {
+      background: linear-gradient(90deg, #1e3c72, #2a5298);
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+      animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .product {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .product:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    .product img {
+      width: 100%;
+      height: 150px;
+      object-fit: contain;
+      transition: transform 0.5s;
+    }
+    .product:hover img {
+      transform: scale(1.05);
+    }
+    .product h3 {
+      text-align: center;
+      padding: 10px;
+      font-size: 1.1rem;
+      color: #1e3c72;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      animation: fadeIn 0.5s;
+    }
+    .modal-content {
+      background: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      position: relative;
+      animation: slideIn 0.5s;
+    }
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #333;
+    }
+    @keyframes slideIn {
+      from { transform: translateY(-50px); opacity: 0;}
+      to { transform: translateY(0); opacity: 1;}
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #1e3c72;
+      color: white;
+    }
+    /* Кнопки валюты */
+    .currency-switch {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      padding: 10px;
+      display: flex;
+      gap: 5px;
+      z-index: 100;
+    }
+    .currency-switch button {
+      padding: 5px 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      background: #1e3c72;
+      color: white;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .currency-switch button:hover {
+      background: #2a5298;
+    }
   </style>
 </head>
-<meta name="google-site-verification" content="GQZhzcWIcx7_qHv8ofn1jaM9se7YdfkT1ooYta8e6dE" />
 <body>
   <header>
-    <div class="container">
-      <div class="topbar">
-        <div class="brand" aria-label="Электроникум">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          <div>
-            <h1>Электроникум</h1>
-            <small>Магазин современной электроники</small>
-          </div>
-        </div>
-        <nav aria-label="Основная навигация">
-          <a href="#products">Товары</a>
-          <a href="#about">О нас</a>
-          <a href="#contacts">Контакты</a>
-        </nav>
-      </div>
-
-      <div class="controls" role="region" aria-label="Панель поиска и фильтров">
-        <input id="search" class="input" type="search" placeholder="Поиск по названию…" aria-label="Поиск" />
-        <select id="category" aria-label="Категории">
-          <option value="">Все категории</option>
-          <option value="laptop">Ноутбуки</option>
-          <option value="tablet">Планшеты</option>
-          <option value="tv">Телевизоры</option>
-          <option value="audio">Аудио</option>
-          <option value="phone">Смартфоны</option>
-          <option value="accessory">Аксессуары</option>
-          <option value="console">Игровые приставки</option>
-          <option value="home">Техника для дома</option>
-          <option value="pc">ПК/Комплектующие</option>
-        </select>
-        <select id="sort" aria-label="Сортировка">
-          <option value="default">Сортировка</option>
-          <option value="price-asc">Цена: по возрастанию</option>
-          <option value="price-desc">Цена: по убыванию</option>
-          <option value="name-asc">Название: А→Я</option>
-          <option value="name-desc">Название: Я→А</option>
-        </select>
-        <button id="currency-toggle" class="btn" type="button" aria-pressed="false" title="Переключить валюту">₽</button>
-        <button id="theme-toggle" class="btn" type="button" aria-pressed="false" title="Темная тема">🌓</button>
-      </div>
-    </div>
+    <h1>AYTO PARKING</h1>
   </header>
 
-  <main class="container" id="products">
-    <section class="products" id="grid" aria-live="polite">
-      <!-- Товары (данные берём из массива products внизу) будут сгенерированы JS -->
-    </section>
+  <!-- Переключатель валют -->
+  <div class="currency-switch">
+    <button onclick="setCurrency('RUB')">₽</button>
+    <button onclick="setCurrency('USD')">$</button>
+    <button onclick="setCurrency('EUR')">€</button>
+  </div>
 
-    <section id="about" style="margin-top:36px">
-      <h2>О нас</h2>
-      <p class="muted">Мы помогаем подобрать технику для учебы, работы и отдыха. Консультируем, даём гарантию и поддерживаем после покупки.</p>
-    </section>
+  <main>
+    <section class="products">
+      <!-- ВСЕ твои машины сохранены -->
+      <div class="product" onclick="showPrice('MERCEDES-BENZ', '3 450 000 ₽')">
+  <img src="https://b4051664-be9e-4979-89c4-770444c116cd.selcdn.net/media/common/model_gallery_preview_large/tradeins.space/uploads/photo/12490876/9cd188f49b2401ed1ccbb913aaf3af30.png?v131" alt="MERCEDES-BENZ">
+  <h3>MERCEDES-BENZ</h3>
+  <p>Немецкий автомобиль премиум-класса с комфортным салоном и надежной инженерией.</p>
+</div>
 
-    <section id="contacts" style="margin-top:24px">
-      <h2>Контакты</h2>
-      <p>Телефон: <a href="tel:+992919222766">+992 919 222 766</a> | <a href="tel:+992555551018">+992 555 551 018</a></p>
-      <form id="form" class="controls" onsubmit="event.preventDefault(); alert('Спасибо! Мы свяжемся с вами.'); this.reset();">
-        <input class="input" required placeholder="Ваше имя" />
-        <input class="input" type="tel" required placeholder="Телефон" />
-        <button class="btn primary" type="submit">Отправить</button>
-      </form>
+<div class="product" onclick="showPrice('BMW X5', '6 330 000 ₽')">
+  <img src="https://apiweb.rolf.ru/storage/thumbnails/large/models/14-bmw/4921-x5_new/f47fe6ea0e935587c7db4f55ba139286.png" alt="BMW X5">
+  <h3>BMW X5</h3>
+  <p>Мощный внедорожник с динамичной управляемостью, современными технологиями и просторным салоном.</p>
+</div>
+
+<div class="product" onclick="showPrice('Toyota Camry', '4 150 000 ₽')">
+  <img src="https://www.avtogermes.ru/images/marks/toyota/camry/viii-xv70-restajling/colors/_1/toyota-camry-ix-xv80-china-market-belyj-metallik.67d8792aa249cb7ace5bf3827ecfea09.png" alt="Toyota Camry">
+  <h3>Toyota Camry</h3>
+  <p>Надежный и экономичный седан с удобным салоном и современными системами безопасности.</p>
+</div>
+
+<div class="product" onclick="showPrice('LEXUS LX', '21 150 000 ₽')">
+  <img src="https://autopremiumgroup.ru/m/_versions/catalog/autos/2023/lexus_lx_2023_vnedorozhnik_5dv/600_ultra_luxury/lx600_ultra_luxury_2023_atomic_silver_image_series.jpg" alt="LEXUS LX">
+  <h3>LEXUS LX</h3>
+  <p>Роскошный внедорожник с премиальными материалами, мощным двигателем и высоким уровнем комфорта.</p>
+</div>
+
+<div class="product" onclick="showPrice('BMW M5', '20 400 000 ₽')">
+  <img src="https://prod.cosy.bmw.cloud/bmwweb/cosySec?COSY-EU-100-7331cqgv2Z7d%25i02uCaY3MuO2kOHUtWPfbYfy91T10tLhu1XzWVo7puMLWFmdkAj5DOP4tFhZ8XgY1nTNIowJ4HO3zkyXq%25sGM8snpq6v6ODubLz2aKqfkoQjmB2fJj5DOP5Eagd%25kcWExHWpbl8FO2k3Hy2o24LEbTQLXg7AF3D%25zhrLGwg6QuiVpRBhSU" alt="BMW M5">
+  <h3>BMW M5</h3>
+  <p>Высокопроизводительный спортивный седан с точной управляемостью и мощным двигателем.</p>
+</div>
+
+<div class="product" onclick="showPrice('Kia Sportage', '4 000 000 ₽')">
+  <img src="https://www.avtogermes.ru/images/marks/kia/sportage/v/colors/swp/kia-sportage-v-belyj-perlamutr.714195e1a04160fe58e132b336e8fdb5.png" alt="Kia Sportage">
+  <h3>Kia Sportage</h3>
+  <p>Компактный кроссовер с современным дизайном, удобным салоном и экономичным двигателем.</p>
+</div>
+
+<div class="product" onclick="showPrice('LADA Vesta', '2 000 000 ₽')">
+  <img src="https://www.avtogermes.ru/images/generations/preview/lada-vesta-i-restajling.ce01d9961351de4986bf1f4ecf8d9087.png" alt="LADA Vesta">
+  <h3>LADA Vesta</h3>
+  <p>Доступный и практичный седан с современными функциями и надежной конструкцией.</p>
+</div>
+
+<div class="product" onclick="showPrice('Hyundai Palisade', '5 000 000 ₽')">
+  <img src="https://avatars.mds.yandex.net/get-autoru-vos/2134599/b5a68334304a3e441f37a4424662efec/456x342" alt="Hyundai Palisade">
+  <h3>Hyundai Palisade</h3>
+  <p>Просторный внедорожник с современными технологиями и высоким уровнем комфорта для всей семьи.</p>
+</div>
+
+<div class="product" onclick="showPrice('Range Rover', '10 000 000 ₽')">
+  <img src="https://media.cdn-jaguarlandrover.com/api/v2/images/107596/w/680.jpg" alt="Range Rover">
+  <h3>Range Rover</h3>
+  <p>Элегантный и мощный внедорожник с премиальными материалами и отличной проходимостью.</p>
+</div>
+
+<div class="product" onclick="showPrice('Opel Astra Sports Tourer', '3 000 000 ₽')">
+  <img src="https://res.cloudinary.com/finn-auto/image/fetch/q_auto,f_auto,c_auto,dpr_2,w_720/https://dataops-nocodb-s3-bucket-production.s3.eu-central-1.amazonaws.com/nc/uploads/noco/fleet_blue_dragon/car_images/image/D9E4hj.png" alt="Opel Astra Sports Tourer">
+  <h3>Opel Astra Sports Tourer</h3>
+  <p>Универсальный семейный автомобиль с экономичным двигателем и практичным салоном.</p>
+</div>
+
+<div class="product" onclick="showPrice('Audi Q7', '7 500 000 ₽')">
+  <img src="https://a3381f52-5e9a-4db6-babe-4d7b4a71b25f.selcdn.net/media/common/model_gallery_preview_large/tradeins.space/uploads/photo/6861241/zie4zc%20(2).jpeg?v239" alt="Audi Q7">
+  <h3>Audi Q7</h3>
+  <p>Престижный внедорожник с комфортным салоном, передовыми технологиями и динамичной управляемостью.</p>
+</div>
+
+<div class="product" onclick="showPrice('Porsche Cayenne', '12 800 000 ₽')">
+  <img src="https://d2ivfcfbdvj3sm.cloudfront.net/7fc965ab77efe6e0fa62e4ca1ea7673bb65846530c1e3d8e88cb10/stills_0640_png/MY2023/52727/52727_st0640_116.png" alt="Porsche Cayenne">
+  <h3>Porsche Cayenne</h3>
+  <p>Спортивный люксовый внедорожник с мощным двигателем и высокой маневренностью.</p>
+</div>
+
+<div class="product" onclick="showPrice('Toyota Land Cruiser 300', '9 900 000 ₽')">
+  <img src="https://avatars.mds.yandex.net/get-verba/216201/2a0000017a62aab3c61e40933bb9f255cdb3/456x342" alt="Toyota Land Cruiser 300">
+  <h3>Toyota Land Cruiser 300</h3>
+  <p>Надежный внедорожник с высокой проходимостью и долговечной конструкцией для любых условий.</p>
+</div>
+
+<div class="product" onclick="showPrice('Jeep Grand Cherokee', '6 500 000 ₽')">
+  <img src="https://w7.pngwing.com/pngs/1005/370/png-transparent-2018-jeep-grand-cherokee-trackhawk-chrysler-sport-utility-vehicle-ram-pickup-grand-sale-car-automatic-transmission-vehicle.png" alt="Jeep Grand Cherokee">
+  <h3>Jeep Grand Cherokee</h3>
+  <p>Прочный внедорожник с комфортным салоном, отличной проходимостью и современными технологиями.</p>
+</div>
+
+<div class="product" onclick="showPrice('Lamborghini Aventador', '45 000 000 ₽')">
+  <img src="https://png.pngtree.com/png-vector/20240705/ourmid/pngtree-high-resolution-image-of-a-blue-lamborghini-aventador-clipart-png-image_12960222.png" alt="Lamborghini Aventador">
+  <h3>Lamborghini Aventador</h3>
+  <p>Эксклюзивный суперкар с невероятной мощностью, аэродинамикой и спортивным дизайном.</p>
+</div>
+
+<div class="product" onclick="showPrice('Ferrari 488 GTB', '38 000 000 ₽')">
+  <img src="https://png.pngtree.com/png-vector/20250422/ourmid/pngtree-red-ferrari-sports-car-with-racing-stripes-png-image_15976335.png" alt="Ferrari 488 GTB">
+  <h3>Ferrari 488 GTB</h3>
+  <p>Высокопроизводительный спорткар с итальянским дизайном и выдающейся динамикой на дороге.</p>
+</div>
+
+<div class="product" onclick="showPrice('McLaren 720S', '42 000 000 ₽')">
+  <img src="https://png.pngtree.com/png-vector/20250429/ourmid/pngtree-sleek-silver-mclaren-720s-supercar-angled-view-showcasing-aerodynamic-design-and-png-image_16098904.png" alt="McLaren 720S">
+  <h3>McLaren 720S</h3>
+  <p>Современный суперкар с высокой скоростью, аэродинамикой и выдающейся управляемостью.</p>
+</div>
+
+<div class="product" onclick="showPrice('Lamborghini Urus', '29 000 000 ₽')">
+  <img src="https://png.pngtree.com/png-vector/20250423/ourlarge/pngtree-black-lamborghini-urus-suv-png-image_16072599.png" alt="Lamborghini Urus">
+  <h3>Lamborghini Urus</h3>
+  <p>Суперкроссовер с мощным двигателем, спортивным дизайном и роскошным интерьером.</p>
+</div>
+
+<div class="product" onclick="showPrice('Rolls-Royce Cullinan', '55 000 000 ₽')">
+  <img src="https://www.chabe.fr/wp-content/uploads/2021/03/RR2-retourne-600X503.png" alt="Rolls-Royce Cullinan">
+  <h3>Rolls-Royce Cullinan</h3>
+  <p>Элитный внедорожник с непревзойденным комфортом, роскошными материалами и высокой мощностью.</p>
+</div>
+
+<div class="product" onclick="showPrice('Tesla Model X', '11 500 000 ₽')">
+  <img src="https://autopremiumgroup.ru/m/_versions/catalog/autos/2015/tesla_model_x_2015_vnedorozhnik_5dv/performance/black_image_series.jpg" alt="Tesla Model X">
+  <h3>Tesla Model X</h3>
+  <p>Электрический кроссовер с передовыми технологиями, высоким запасом хода и просторным салоном.</p>
+</div>
+
+<div class="product" onclick="showPrice('Nissan GT-R', '15 000 000 ₽')">
+  <img src="https://img.goodfon.ru/wallpaper/big/4/65/nissan-gt-r-nismo.webp" alt="Nissan GT-R">
+  <h3>Nissan GT-R</h3>
+  <p>Легендарный спортивный автомобиль с выдающейся динамикой и точной управляемостью.</p>
+</div>
+
+<div class="product" onclick="showPrice('Chevrolet Camaro', '7 000 000 ₽')">
+  <img src="https://png.pngtree.com/png-vector/20240528/ourmid/pngtree-black-colour-chevrolet-camaro-2ss-png-image_12538610.png" alt="Chevrolet Camaro">
+  <h3>Chevrolet Camaro</h3>
+  <p>Американский спорткар с мощным двигателем и агрессивным дизайном.</p>
+</div>
+
+<div class="product" onclick="showPrice('Audi R8', '18 000 000 ₽')">
+  <img src="https://www.shutterstock.com/image-illustration/almaty-kazakhstan-jan-152022-new-600nw-2108483666.jpg" alt="Audi R8">
+  <h3>Audi R8</h3>
+  <p>Суперкар с немецким качеством, высокой производительностью и элегантным дизайном.</p>
+</div>
+
+<div class="product" onclick="showPrice('Ford Mustang', '8 500 000 ₽')">
+  <img src="https://autopremiumgroup.ru/m/_versions/ford/mustang_2020/shelby_gt350r/gt350r_mustang_2020_ford_performance_blue_f_image_series_preview.png" alt="Ford Mustang">
+  <h3>Ford Mustang</h3>
+  <p>Культовый американский мускулкар с мощным двигателем и агрессивным дизайном.</p>
+</div>
+
     </section>
   </main>
 
-  <!-- Модальное окно -->
-  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-title">
+  <div id="modal" class="modal">
     <div class="modal-content">
-      <div class="modal-header">
-        <h2 id="modal-title"></h2>
-        <button class="close" aria-label="Закрыть" onclick="closeModal()">×</button>
-      </div>
-      <div class="modal-body">
-        <img id="modal-image" alt="Изображение товара" />
-        <div>
-          <p id="modal-desc" class="muted"></p>
-          <div class="price-row">
-            <span id="modal-price" class="price"></span>
-            <button class="btn primary" onclick="alert('Добавлено в корзину')">В корзину</button>
-          </div>
-        </div>
-      </div>
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="modal-title"></h2>
+      <p id="modal-price"></p>
     </div>
   </div>
 
   <footer>
-    <div class="container">
-      <p class="muted">© 2025 Электроникум. Все права защищены.</p>
-      <p class="muted">Телефон: +992 919 222 766 | +992 555 551 018</p>
-    </div>
+    <p>&copy; 2025 Чудеса. Все права защищены.</p>
   </footer>
 
   <script>
-    // ДАННЫЕ ТОВАРОВ (из вашего исходника + категории + цены в копейках)
-    const products = [
-      {title:'MacBook', cat:'laptop', priceRUB:75000_00, desc:'Мощный ноутбук с Retina-дисплеем и процессором Apple M1.', img:'https://www.iphones.ru/wp-content/uploads/2023/10/IMG_1263.jpeg'},
-      {title:'Планшет Samsung', cat:'tablet', priceRUB:30000_00, desc:'Универсальный планшет с ярким экраном и поддержкой S Pen.', img:'https://www.cifrus.ru/photos/little/samsung/samsung-galaxy-tab-s10-fe-plus-x628-12-256gb-5g-grey-global-1.jpg'},
-      {title:'Телевизор LG', cat:'tv', priceRUB:60000_00, desc:'Смарт-ТВ с 4K разрешением и поддержкой HDR10.', img:'https://s2-techtudo.glbimg.com/ycKlM1DtsKLW8_Yqucso5ogw72o=/0x0:750x480/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2021/B/a/wpDXATS5ipnuIcyUjO9Q/2012-10-18-large01.jpeg'},
-      {title:'Apple AirPods Max', cat:'audio', priceRUB:15000_00, desc:'Премиальные наушники с шумоподавлением и пространственным звуком.', img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxjnnEhOCO_bgt84_aEmQUTJdKe1SaBexXjA&s'},
-      {title:'Колонка JBL', cat:'audio', priceRUB:12000_00, desc:'Портативная колонка с мощным басом и защитой от влаги.', img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0lDglNYZnB8-jFpBPlITd42JWSMijz6oEGQ&s'},
-      {title:'Смартфон iPhone', cat:'phone', priceRUB:95000_00, desc:'Флагман Apple с отличной камерой и дисплеем Super Retina XDR.', img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRH66tVh_H7x4xCPcimhsTd50fjViF4ZpenRg&s'},
-      {title:'Игровая мышь', cat:'accessory', priceRUB:2000_00, desc:'Беспроводная игровая мышь с RGB‑подсветкой.', img:'https://images.prom.ua/5237261349_w640_h320_besprovodnaya-igrovaya-myshka.jpg'},
-      {title:'Apple Watch', cat:'accessory', priceRUB:35000_00, desc:'Часы с функцией ЭКГ, пульсометром и отслеживанием активности.', img:'https://help.apple.com/assets/67609172711801C2360E7AF2/6760917D62369CFAF70E5F33/en_US/42d0c7a0eb8ae808b85c49e441ad08a0.png'},
-      {title:'Видеокарта RTX 4090', cat:'pc', priceRUB:150000_00, desc:'Флагманская видеокарта для игр в 4K и работы с ИИ.', img:'https://static.gigabyte.com/StaticFile/Image/Global/cf7418c2c3d39d8d0aa37dd85f940399/Product/32546/png/1000'},
-      {title:'Кофеварка Xiaomi', cat:'home', priceRUB:50000_00, desc:'Капсульная кофеварка с автоматической очисткой.', img:'https://texnohome.az/image/catalog/29.12.2024/xiaomi-mi-capsule-coffee-machine-1-squaremedium-ezgifcom-webp-to-jpg-converter.jpg'},
-      {title:'PlayStation 5', cat:'console', priceRUB:15000_00, desc:'Консоль нового поколения с поддержкой 4K и быстрым SSD.', img:'https://st.depositphotos.com/10617446/56390/i/450/depositphotos_563907420-stock-photo-playstation-console-isolated-white-background.jpg'},
-      {title:'Фен Dyson', cat:'home', priceRUB:9000_00, desc:'Антистатический эффект, длина рукоятки 245 мм. Профессиональная укладка.', img:'https://cdn.btw.shopping/article/%D1%84%D0%B5%D0%BD_%D0%B4-WRgX0Ae9Sgqy.webp'},
-      {title:'Samsung Galaxy S25 Ultra', cat:'phone', priceRUB:132400_00, desc:'Мощный смартфон с ИИ‑функциями и отличной камерой.', img:'https://dicentre.ru/wa-data/public/shop/img/tsveta.jpg'},
-      {title:'iPad Pro 11', cat:'tablet', priceRUB:120400_00, desc:'Лёгкий и универсальный планшет для повседневных задач.', img:'https://istore.ke/wp-content/uploads/2023/09/ipad_pro_wi-fi_11_in_4th_generation_silver_pdp_image_position-1b__wwen-410x410.jpg'},
-      {title:'iMac 24" (M3)', cat:'pc', priceRUB:145000_00, desc:'Моноблок с дисплеем 24" и процессором Apple M3.', img:'https://cdn.shoplightspeed.com/shops/662820/files/59786730/650x750x2/apple-imac-24-apple-m3-8-cpu-10gpu-8-gb-512-gb-ssd.jpg'}
-    ];
+    const exchangeRates = {
+      USD: 100,
+      EUR: 110
+    };
+    let currentCurrency = 'RUB';
 
-    const grid = document.getElementById('grid');
-    const searchInput = document.getElementById('search');
-    const categorySelect = document.getElementById('category');
-    const sortSelect = document.getElementById('sort');
-    const currencyToggle = document.getElementById('currency-toggle');
-    const themeToggle = document.getElementById('theme-toggle');
-
-    // Валюта: ₽ <-> SM (сомони). Курс условный, отредактируйте при желании
-    let currency = 'RUB';
-    const RATE_RUB_TO_TJS = 0.13; // ~примерный курс, можно поменять
-
-    const formatPrice = (rubCents) => {
-      if(currency==='RUB'){
-        return new Intl.NumberFormat('ru-RU', {style:'currency', currency:'RUB'}).format(rubCents/100);
-      } else {
-        const tjs = (rubCents/100) * RATE_RUB_TO_TJS;
-        return new Intl.NumberFormat('ru-RU', {style:'currency', currency:'TJS'}).format(tjs);
+    function showPrice(title, price) {
+      let numericPrice = parseInt(price.replace(/\s|₽/g, ''));
+      let displayPrice = price;
+      if(currentCurrency !== 'RUB'){
+        let converted = (numericPrice / exchangeRates[currentCurrency]).toFixed(2);
+        displayPrice = `${converted} ${currentCurrency}`;
       }
+      document.getElementById('modal-title').innerText = title;
+      document.getElementById('modal-price').innerText = `Цена: ${displayPrice}`;
+      document.getElementById('modal').style.display = 'block';
     }
 
-    function productCard(p){
-      const el = document.createElement('article');
-      el.className = 'product';
-      el.tabIndex = 0;
-      el.setAttribute('data-title', p.title.toLowerCase());
-      el.setAttribute('data-cat', p.cat);
-      el.setAttribute('data-price', p.priceRUB);
-      el.innerHTML = `
-        <img loading="lazy" src="${p.img}" alt="${p.title}"/>
-        <h3>${p.title}</h3>
-        <p class="muted">${p.desc}</p>
-        <div class="price-row">
-          <span class="price">${formatPrice(p.priceRUB)}</span>
-          <span class="badge">${mapCat(p.cat)}</span>
-        </div>
-      `;
-
-      el.addEventListener('click', ()=> showPrice(p));
-      el.addEventListener('keypress', (e)=> { if(e.key==='Enter') showPrice(p); });
-      return el;
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
     }
 
-    function mapCat(c){
-      return ({
-        laptop:'Ноутбуки', tablet:'Планшеты', tv:'Телевизоры', audio:'Аудио', phone:'Смартфоны', accessory:'Аксессуары', console:'Приставки', home:'Для дома', pc:'ПК'
-      })[c] || 'Другое';
+    function setCurrency(currency){
+      currentCurrency = currency;
+      alert(`Валюта изменена на ${currency}. Откройте товар, чтобы увидеть цену в новой валюте.`);
     }
-
-    function render(list){
-      grid.innerHTML = '';
-      list.forEach(p=> grid.appendChild(productCard(p)));
-      if(list.length===0){
-        const empty = document.createElement('p');
-        empty.className='muted';
-        empty.textContent='Ничего не найдено. Уточните запрос или сбросьте фильтры.';
-        grid.appendChild(empty);
-      }
-    }
-
-    function applyFilters(){
-      const q = searchInput.value.trim().toLowerCase();
-      const cat = categorySelect.value;
-      let list = products.filter(p => (!q || p.title.toLowerCase().includes(q)) && (!cat || p.cat===cat));
-      // сортировка
-      switch(sortSelect.value){
-        case 'price-asc': list.sort((a,b)=>a.priceRUB-b.priceRUB); break;
-        case 'price-desc': list.sort((a,b)=>b.priceRUB-a.priceRUB); break;
-        case 'name-asc': list.sort((a,b)=>a.title.localeCompare(b.title, 'ru')); break;
-        case 'name-desc': list.sort((a,b)=>b.title.localeCompare(a.title, 'ru')); break;
-      }
-      render(list);
-    }
-
-    // Инициализация
-    render(products);
-    [searchInput, categorySelect, sortSelect].forEach(el=> el.addEventListener('input', applyFilters));
-
-    // Переключение валюты
-    currencyToggle.addEventListener('click', ()=>{
-      currency = currency==='RUB' ? 'TJS' : 'RUB';
-      currencyToggle.textContent = currency==='RUB' ? '₽' : 'SM';
-      applyFilters();
-    });
-
-    // Темная тема (запоминание в localStorage)
-    const root = document.documentElement;
-    const savedTheme = localStorage.getItem('theme');
-    if(savedTheme==='dark'){ root.classList.add('dark'); themeToggle.setAttribute('aria-pressed','true'); }
-    themeToggle.addEventListener('click',()=>{
-      const isDark = root.classList.toggle('dark');
-      themeToggle.setAttribute('aria-pressed', String(isDark));
-      localStorage.setItem('theme', isDark?'dark':'light');
-    });
-
-    // Модалка
-    const modal = document.getElementById('modal');
-    const mTitle = document.getElementById('modal-title');
-    const mDesc  = document.getElementById('modal-desc');
-    const mPrice = document.getElementById('modal-price');
-    const mImg   = document.getElementById('modal-image');
-
-    function showPrice(p){
-      mTitle.textContent = p.title;
-      mDesc.textContent = p.desc;
-      mPrice.textContent = formatPrice(p.priceRUB);
-      mImg.src = p.img; mImg.alt = p.title;
-      modal.setAttribute('aria-hidden','false');
-      modal.style.display='flex';
-      // блокируем прокрутку страницы под модалкой
-      document.body.style.overflow='hidden';
-    }
-
-    function closeModal(){
-      modal.setAttribute('aria-hidden','true');
-      modal.style.display='none';
-      document.body.style.overflow='auto';
-    }
-
-    window.closeModal = closeModal; // чтобы работала кнопка X
-    modal.addEventListener('click',(e)=>{ if(e.target===modal) closeModal(); });
-    window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModal(); });
   </script>
 </body>
 </html>
